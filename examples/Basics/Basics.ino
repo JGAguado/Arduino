@@ -1,6 +1,6 @@
 /******************************************************************************
 
-Basics.ino
+Basics example
 Example sketch for testing basic ArduLab functions.
 Created by J.G.Aguado
 May 18, 2018  
@@ -22,6 +22,6 @@ void setup(){
 }
 
 void loop(){
-    // myArduLab.Beep();
-    // myArduLab.RGB(0,0,100);
+    myArduLab.Beep();
+    myArduLab.RGB(0,0,100);
 }
