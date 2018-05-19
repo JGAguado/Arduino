@@ -22,5 +22,6 @@ void setup(){
 }
 
 void loop(){
-    myArduLab.Beep();
+    // myArduLab.Beep();
+    // myArduLab.RGB(0,0,100);
 }
