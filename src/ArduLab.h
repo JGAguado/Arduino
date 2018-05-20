@@ -32,6 +32,7 @@ class ArduLab{
         float Light();
         void MotorA(int dir);
         void MotorB(int dir);
+
     private:
     	int _mod = 0;
     	int _comms = 0;

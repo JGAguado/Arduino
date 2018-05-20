@@ -16,7 +16,7 @@ Distributed as-is; no warranty is given.
 
 #define INPUT_SIZE 30
 
-ArduLab myArduLab("None", "None");
+ArduLab myArduLab();
 
 int t_trans = 0;
 
@@ -32,8 +32,9 @@ void loop() {
   float light = myArduLab.Light();
   if (t_trans > 10){
     t_trans = 0;
-    Serial1.print("10:"); Serial1.println(light);
-    Serial.print("10:"); Serial.println(light);
+    String msg = "10:" + String(light);
+    Serial1.println(msg);
+    Serial.println(msg);
   }
   t_trans = t_trans + 1; 
   delay(1000);

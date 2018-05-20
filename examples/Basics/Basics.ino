@@ -15,7 +15,7 @@ Distributed as-is; no warranty is given.
 
 #include <ArduLab.h>
 
-ArduLab myArduLab("None", "None");
+ArduLab myArduLab();
 
 void setup(){
 
