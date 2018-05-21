@@ -15,7 +15,7 @@ Distributed as-is; no warranty is given.
  
 #include "ArduLab.h"
 
-ArduLab::ArduLab(char Mod, char Comms)
+ArduLab::ArduLab()
 {
   // Basic Outputs
   pinMode(_buzzer, OUTPUT);
@@ -31,29 +31,6 @@ ArduLab::ArduLab(char Mod, char Comms)
 
   // Basic Inputs
   pinMode(_pushbutton, INPUT);
-
-  if (Mod == "ElectroLab"){
-    _mod = 1;
-  }
-  else if (Mod == "BotMod"){
-    _mod = 2;
-  }
-  else if (Mod == "DomoMod"){
-    _mod = 3;
-  }
-  else if (Mod == "KineticMod"){
-    _mod = 4;
-  }
-
-  if (Comms == "Wifi"){
-    _comms = 1;
-  }
-  else if (Comms == "Bluetooth"){
-    _comms = 2;
-  }
-  else if (Mod == "RF24"){
-    _comms = 3;
-  }
 }
  
 void ArduLab::Beep()
@@ -76,12 +53,12 @@ boolean ArduLab::PushButton()
   return digitalRead(_pushbutton);
 }
 
-float ArduLab::Battery()
+int ArduLab::Battery()
 {
   return analogRead(_battery);
 }
 
-float ArduLab::Light()
+int ArduLab::Light()
 {
   return analogRead(_ldr);
 }

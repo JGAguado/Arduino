@@ -24,19 +24,16 @@ Distributed as-is; no warranty is given.
 
 class ArduLab{
     public:
-        ArduLab(char Mod, char Comms);
+        ArduLab();
         void RGB(int r, int g, int b);
         void Beep();
         bool PushButton();
-        float Battery();
-        float Light();
+        int Battery();
+        int Light();
         void MotorA(int dir);
         void MotorB(int dir);
 
-    private:
-    	int _mod = 0;
-    	int _comms = 0;
-    	
+    private:    	
     	int _buzzer = 4;
     	int _red = 13;
     	int _green = 5;

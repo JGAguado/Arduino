@@ -16,7 +16,7 @@ Distributed as-is; no warranty is given.
 
 #define INPUT_SIZE 30
 
-ArduLab myArduLab();
+ArduLab myArduLab;
 
 int t_trans = 0;
 
@@ -29,7 +29,7 @@ void setup() {
 void loop() {
   // read from port 1, send to port 0:
   Read_ESP8266();
-  float light = myArduLab.Light();
+  int light = myArduLab.Light();
   if (t_trans > 10){
     t_trans = 0;
     String msg = "10:" + String(light);
