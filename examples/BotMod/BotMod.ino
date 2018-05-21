@@ -25,7 +25,17 @@ void setup(){
 }
 
 void loop(){
-    myBot.Get_Acc();
+    float accel[3];
+    myBot.Get_Acc(accel);
+    
+    
+    Serial.print("[");
+    Serial.print(accel[0]);
+    Serial.print(", ");
+    Serial.print(accel[1]);
+    Serial.print(", ");
+    Serial.print(accel[2]);
+    Serial.println("],");
     
     delay(10);
 }

@@ -34,7 +34,7 @@ class BotMod{
         void Servo_Right(int pos); 
         void Led(int power);
         void Laser(int power); 
-        void Get_Acc(boolean debug = false);
+        void Get_Acc(float *accel);
     private:
         Servo s_left;
         Servo s_right;

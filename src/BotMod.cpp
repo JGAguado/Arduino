@@ -60,7 +60,9 @@ void BotMod::IMU_init(){
     
 }
 
-void BotMod::Get_Acc(boolean debug){
+void BotMod::Get_Acc(float *accel){
+    bool debug = false;
+
     IMU.read();
     int x, y, z;
     float X, Y, Z, bx, by, bz, Mxx, Mxy, Mxz, Myx, Myy, Myz, Mzx, Mzy, Mzz;
@@ -84,9 +86,9 @@ void BotMod::Get_Acc(boolean debug){
     Mzz = 6.18e-05;
 
     //Calibration of the raw acc sensor
-    X = Mxx*(x-bx) + Mxy*(y-by) + Mxz*(z-bz);
-    Y = Myx*(x-bx) + Myy*(y-by) + Myz*(z-bz);
-    Z = Mzx*(x-bx) + Mzy*(y-by) + Mzz*(z-bz);
+    accel[0] = Mxx*(x-bx) + Mxy*(y-by) + Mxz*(z-bz);
+    accel[1] = Myx*(x-bx) + Myy*(y-by) + Myz*(z-bz);
+    accel[2] = Mzx*(x-bx) + Mzy*(y-by) + Mzz*(z-bz);
     
     if (debug){
     Serial.print("[");
