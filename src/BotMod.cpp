@@ -141,3 +141,53 @@ void BotMod::Get_Mag(float *mag){
     Serial.println("],");
     }
 }
+
+float BotMod::Get_Pitch(){ 
+    float accel[3];
+    BotMod::Get_Acc(accel);
+    
+    pitch = asin(-accel[0]);
+    return pitch;
+}
+
+float BotMod::Get_Roll(){ 
+    float accel[3];
+    BotMod::Get_Acc(accel);
+    
+    pitch = BotMod::Get_Pitch();
+
+    roll = asin(accel[1]/cos(pitch));
+    return roll;
+}
+
+float BotMod::Get_Heading(){ 
+    float Mx, My, Mz;
+    float mag[3];
+    BotMod::Get_Mag(mag);
+    
+    pitch = BotMod::Get_Pitch();
+    roll = BotMod::Get_Roll();
+
+    // Tilt compensated magnetic sensor measurements
+    Mx = mag[0] * cos(pitch) + mag[2] * sin(pitch);
+    My = mag[0] * sin(roll) * sin(pitch) + mag[1] * cos(roll)  -mag[2] * sin(roll) * cos(pitch);
+    Mz = -mag[0] * cos(roll) * sin(pitch) + mag[1] * sin(roll) + mag[2] * cos(roll) * cos(pitch);
+
+    if (Mx>0 && My>=0){
+        heading = atan(My/Mx);
+    }
+    else if (Mx<0){
+        heading = 180 + atan(My/Mx);
+    }
+    else if (Mx>0 && My<=0){
+        heading = 360 + atan(My/Mx);
+    }
+    else if (Mx==0 && My<0){
+        heading = 90;
+    }
+    else if (Mx==0 && My>0){
+        heading = 270;
+    }
+
+    return heading;
+}

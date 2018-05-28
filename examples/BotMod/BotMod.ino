@@ -28,7 +28,15 @@ void loop(){
     float accel[3];
     myBot.Get_Acc(accel);
     
+    float pitch;
+    pitch = myBot.Get_Pitch();
     
+    float roll;
+    roll = myBot.Get_Roll();
+
+    float heading;
+    heading = myBot.Get_Heading();
+        
     Serial.print("[");
     Serial.print(accel[0]);
     Serial.print(", ");

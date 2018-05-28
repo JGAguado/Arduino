@@ -36,12 +36,18 @@ class BotMod{
         void Laser(int power); 
         void Get_Acc(float *accel);
         void Get_Mag(float *mag);
+        float Get_Pitch();
+        float Get_Roll();
+        float Get_Heading();
     private:
         Servo s_left;
         Servo s_right;
 
         LSM303 IMU;
-        
+        float pitch;
+        float roll;
+        float heading;
+
         int _s_left = 5;
         int _s_right = 6;   
 
