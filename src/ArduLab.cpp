@@ -8,7 +8,7 @@ https://github.com/SpaceDIY/ArduLab
 
 This code is released under the [MIT License](http://opensource.org/licenses/MIT).
 Please review the LICENSE.md file included with this example. If you have any questions 
-or concerns with licensing, please contact techsupport@sparkfun.com.
+or concerns with licensing, please contact jon-garcia@hotmail.com.
 Distributed as-is; no warranty is given.
 
 ******************************************************************************/
