@@ -100,3 +100,44 @@ void BotMod::Get_Acc(float *accel){
     Serial.println("],");
     }
 }
+
+void BotMod::Get_Mag(float *mag){
+    bool debug = false;
+
+    IMU.read();
+    int x, y, z;
+    float X, Y, Z, bx, by, bz, Mxx, Mxy, Mxz, Myx, Myy, Myz, Mzx, Mzy, Mzz;
+    x = IMU.m.y;
+    y = IMU.m.x;
+    z = IMU.m.z;
+    
+    //Experimental coefficients for adjusting according to R = M*(r-b)
+    bx = 273.23;
+    by = -526.71; 
+    bz = 17.52;
+
+    Mxx = 5.98e-05;
+    Mxy = -1.06e-05; 
+    Mxz = -3.14e-06;
+    Myx = -1.063e-05; 
+    Myy = 5.91e-05;
+    Myz = -3.08e-06; 
+    Mzx = -3.14e-06; 
+    Mzy = -3.08e-06; 
+    Mzz = 6.18e-05;
+
+    //Calibration of the raw mag sensor
+    mag[0] = Mxx*(x-bx) + Mxy*(y-by) + Mxz*(z-bz);
+    mag[1] = Myx*(x-bx) + Myy*(y-by) + Myz*(z-bz);
+    mag[2] = Mzx*(x-bx) + Mzy*(y-by) + Mzz*(z-bz);
+    
+    if (debug){
+    Serial.print("[");
+    Serial.print(X);
+    Serial.print(", ");
+    Serial.print(Y);
+    Serial.print(", ");
+    Serial.print(Z);
+    Serial.println("],");
+    }
+}
