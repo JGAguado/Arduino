@@ -1,9 +1,9 @@
 /******************************************************************************
 
-Basics example
+IMU example
 Example sketch for testing basic ArduLab functions.
 Created by J.G.Aguado
-May 18, 2018  
+May 29, 2018  
 https://github.com/SpaceDIY/ArduLab
 
 This code is released under the [MIT License](http://opensource.org/licenses/MIT).
