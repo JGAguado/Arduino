@@ -39,8 +39,8 @@ class ArduLab{
     	byte _green = 5;
     	byte _blue = 6;
     	byte _pushbutton = 16;
-    	byte _battery = A0;
-    	byte _ldr = A5;
+    	int _battery = A0;
+    	int _ldr = A5;
 
     	byte _motor_b_1 = 9;
     	byte _motor_b_2 = 10;

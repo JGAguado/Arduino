@@ -39,6 +39,7 @@ class BotMod : public ArduLab{
         int Right_LDR();
         int Left_IR();
         int Right_IR();
+        float Get_Distance();
         void Get_Acc(float *accel);
         void Get_Mag(float *mag);
         float Get_Pitch();
@@ -57,9 +58,12 @@ class BotMod : public ArduLab{
         byte _laser = 5; 	
         byte _led = 6;
 
-        byte _left_ldr = A2;
-        byte _right_ldr = A1;
-        byte _left_ir = A4;
-        byte _right_ir = A3;
+        byte _trig = 8;
+        byte _echo = 7;
+
+        int _left_ldr = A2;
+        int _right_ldr = A1;
+        int _left_ir = A4;
+        int _right_ir = A3;
 };
 #endif
