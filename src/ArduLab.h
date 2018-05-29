@@ -34,17 +34,17 @@ class ArduLab{
         void MotorB(int dir);
 
     private:    	
-    	int _buzzer = 4;
-    	int _red = 13;
-    	int _green = 5;
-    	int _blue = 6;
-    	int _pushbutton = 16;
-    	int _battery = A0;
-    	int _ldr = A5;
+    	byte _buzzer = 4;
+    	byte _red = 13;
+    	byte _green = 5;
+    	byte _blue = 6;
+    	byte _pushbutton = 16;
+    	byte _battery = A0;
+    	byte _ldr = A5;
 
-    	int _motor_b_1 = 9;
-    	int _motor_b_2 = 10;
-    	int _motor_a_1 = 11;
-    	int _motor_a_2 = 12;
+    	byte _motor_b_1 = 9;
+    	byte _motor_b_2 = 10;
+    	byte _motor_a_1 = 11;
+    	byte _motor_a_2 = 12;
 };
 #endif
