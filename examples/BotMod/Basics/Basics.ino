@@ -27,7 +27,13 @@ void loop(){
     int r_ldr = myBot.Right_LDR();
     int l_ir = myBot.Left_IR();
     int r_ir = myBot.Right_IR();
-    
+
+    if (myBot.PushButton()){
+        myBot.Led(255);
+    }
+    else{
+        myBot.Led(0);
+    }
     Serial.print("Left LDR: ");
     Serial.print(l_ldr);
     Serial.print(" Right LDR: ");

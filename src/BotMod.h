@@ -24,8 +24,9 @@ Distributed as-is; no warranty is given.
 #include <Servo.h>
 #include <Wire.h>
 #include <LSM303.h>
+#include "ArduLab.h"
 
-class BotMod{
+class BotMod : public ArduLab{
     public:
         BotMod();   
         void Servos_init();
