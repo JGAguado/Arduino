@@ -27,6 +27,7 @@ void loop(){
     int r_ldr = myBot.Right_LDR();
     int l_ir = myBot.Left_IR();
     int r_ir = myBot.Right_IR();
+    long distance = myBot.Get_Distance();
 
     if (myBot.PushButton()){
         myBot.Led(255);
@@ -34,7 +35,10 @@ void loop(){
     else{
         myBot.Led(0);
     }
-    Serial.print("Left LDR: ");
+
+    Serial.print("Distance: ");
+    Serial.print(distance);
+    Serial.print("cm Left LDR: ");
     Serial.print(l_ldr);
     Serial.print(" Right LDR: ");
     Serial.print(r_ldr);
@@ -42,5 +46,5 @@ void loop(){
     Serial.print(l_ir);
     Serial.print(" Right IR: ");
     Serial.println(r_ir);
-    delay(10);
+    delay(100);
 }

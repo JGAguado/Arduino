@@ -69,6 +69,20 @@ int BotMod::Right_IR(){
     return analogRead(_right_ir);
 }
 
+long BotMod::Get_Distance(){
+    long duration, distance;
+   
+    digitalWrite(_trig, LOW);  
+    delayMicroseconds(4);
+    digitalWrite(_trig, HIGH);  
+    delayMicroseconds(10);
+    digitalWrite(_trig, LOW);
+
+    duration = pulseIn(_echo, HIGH);  
+
+    distance = duration / 58.2;
+    return distance;
+}
 void BotMod::IMU_init(){
     Wire.begin();
     IMU.init();
