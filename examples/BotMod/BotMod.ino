@@ -28,6 +28,9 @@ void loop(){
     float accel[3];
     myBot.Get_Acc(accel);
     
+    float mag[3];
+    myBot.Get_Mag(mag);
+    
     float pitch;
     pitch = myBot.Get_Pitch();
     
@@ -37,13 +40,25 @@ void loop(){
     float heading;
     heading = myBot.Get_Heading();
         
+       
     Serial.print("[");
     Serial.print(accel[0]);
     Serial.print(", ");
     Serial.print(accel[1]);
     Serial.print(", ");
     Serial.print(accel[2]);
+    Serial.print("],  [");
+    Serial.print(mag[0]);
+    Serial.print(", ");
+    Serial.print(mag[1]);
+    Serial.print(", ");
+    Serial.print(mag[2]);
+    Serial.print("],  [");
+    Serial.print(pitch);
+    Serial.print(", ");
+    Serial.print(roll);
+    Serial.print(", ");
+    Serial.print(heading);
     Serial.println("],");
-    
     delay(10);
 }

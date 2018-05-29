@@ -44,9 +44,6 @@ class BotMod{
         Servo s_right;
 
         LSM303 IMU;
-        float pitch;
-        float roll;
-        float heading;
 
         int _s_left = 5;
         int _s_right = 6;   
