@@ -12,11 +12,9 @@ or concerns with licensing, please contact jon-garcia@hotmail.com.
 Distributed as-is; no warranty is given.
 
 ******************************************************************************/
-#include <Servo.h>
 #include <BotMod.h>
 
 BotMod myBot;
-int pos = 0;
 void setup(){
     myBot.IMU_init();
     Serial.begin(9600);
