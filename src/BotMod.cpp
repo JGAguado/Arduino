@@ -53,6 +53,22 @@ void BotMod::Laser(int power){
     analogWrite(_laser, power);
 }
 
+int BotMod::Left_LDR(){
+    return analogRead(_left_ldr);
+}
+
+int BotMod::Right_LDR(){
+    return analogRead(_right_ldr);
+}
+
+int BotMod::Left_IR(){
+    return analogRead(_left_ir);
+}
+
+int BotMod::Right_IR(){
+    return analogRead(_right_ir);
+}
+
 void BotMod::IMU_init(){
     Wire.begin();
     IMU.init();
