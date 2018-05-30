@@ -16,7 +16,7 @@ Distributed as-is; no warranty is given.
 
 BotMod myBot;
 void setup(){
-    myBot.IMU_init();
+    myBot.BotMod_init();
     Serial.begin(9600);
     delay(100);
     Serial.println("Initializing sensor");

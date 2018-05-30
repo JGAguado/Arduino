@@ -18,7 +18,7 @@ Distributed as-is; no warranty is given.
 BotMod myBot;
 int pos = 0;
 void setup(){
-    myBot.Servos_init();
+    myBot.BotMod_init();
     Serial.begin(9600);
     delay(100);
 }
