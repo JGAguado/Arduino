@@ -35,17 +35,11 @@ void BotMod::BotMod_init(){
 }
 
 void BotMod::Servo_Left(int pos){
-    if ((pos > 0) && (pos < 180)){
-        s_left.write(pos);
-        delay(20);
-    }
+    s_left.write(pos);
 }
 
 void BotMod::Servo_Right(int pos){
-    if ((pos > 0) && (pos < 180)){
-        s_right.write(pos);
-        delay(20);
-    }
+    s_right.write(pos);
 }
 
 void BotMod::Led(int power){
