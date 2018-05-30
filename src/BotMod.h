@@ -21,16 +21,17 @@ Distributed as-is; no warranty is given.
 #else
 #include "WProgram.h"
 #endif
+
 #include <Servo.h>
 #include <Wire.h>
 #include <LSM303.h>
+
 #include "ArduLab.h"
 
 class BotMod : public ArduLab{
     public:
         BotMod();   
-        void Servos_init();
-        void IMU_init();
+        void BotMod_init();
         void Servo_Left(int pos);   
         void Servo_Right(int pos); 
         void Led(int power);

@@ -26,9 +26,12 @@ BotMod::BotMod()
     pinMode(_laser, OUTPUT);  
 }
 
-void BotMod::Servos_init(){
+void BotMod::BotMod_init(){
     s_left.attach(_s_left);
     s_right.attach(_s_right);
+    Wire.begin();
+    IMU.init();
+    IMU.enableDefault();
 }
 
 void BotMod::Servo_Left(int pos){
@@ -82,12 +85,6 @@ long BotMod::Get_Distance(){
 
     distance = duration / 58.2;
     return distance;
-}
-void BotMod::IMU_init(){
-    Wire.begin();
-    IMU.init();
-    IMU.enableDefault();
-    
 }
 
 void BotMod::Get_Acc(float *accel){
