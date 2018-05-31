@@ -17,8 +17,8 @@ Steps:
 #define INPUT_SIZE 30
 
 // WiFi network info.
-char ssid[] = "ALERTA1";
-char wifiPassword[] = "sd98f7sdSD98F7SD";
+char ssid[] = "*****";
+char wifiPassword[] = "******";
 
 // Cayenne authentication info. This should be obtained from the Cayenne Dashboard.
 char username[] = "208786b0-2f63-11e7-8b86-73b5abd46b10";
