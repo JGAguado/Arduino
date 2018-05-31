@@ -18,8 +18,12 @@ Distributed as-is; no warranty is given.
 #include <SPI.h>
 #include <Adafruit_Sensor.h>
 #include <Adafruit_BME280.h>
+#include <Adafruit_PN532.h>
 
 #include <DomoMod.h>
+
+#define PN532_IRQ   (2)
+#define PN532_RESET (3)  // Not connected by default on the NFC Shield
 
 #define BME_SCK 13
 #define BME_MISO 12
@@ -32,6 +36,7 @@ Servo _servo;
 
 Adafruit_CCS811 ccs;
 Adafruit_BME280 bme;
+Adafruit_PN532 nfc(PN532_IRQ, PN532_RESET);
 
 DomoMod::DomoMod()
 {  
@@ -52,6 +57,18 @@ void DomoMod::DomoMod_init(){
         Serial.println("Failed to init BME280 sensor!");
         // while(1);
     }
+
+    // PN532 - RFID Reader
+    nfc.begin();
+    uint32_t versiondata = nfc.getFirmwareVersion();
+    if (! versiondata) {
+        Serial.print("NFC MOdule not found");
+        while (1); 
+    }
+    
+    // RFID Reader initialization
+    nfc.setPassiveActivationRetries(0xFF);
+    nfc.SAMConfig();
 }
 float DomoMod::Temperature(bool debug){
     float temp = bme.readTemperature();
