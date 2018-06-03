@@ -16,8 +16,6 @@ Distributed as-is; no warranty is given.
 
 DomoMod myPlant;
 
-int moi = 0;
-int wat = 100;
 
 void setup(){
     Serial.begin(9600);
@@ -32,25 +30,21 @@ void loop(){
     int co2 = myPlant.CO2(true);
     myPlant.TVOC(true);
 
-    // if (myPlant.PushButton()){
-    //     myPlant.MotorB(1);
-    // }
-    // else{
-    //     myPlant.MotorB(0);
-    // }
+    if (myPlant.PushButton()){
+        myPlant.MotorB(1);
+    }
+    else{
+        myPlant.MotorB(0);
+    }
     int luminosity = map(myPlant.Light(), 0, 1023, 255, 0);
     myPlant.LED(luminosity);
-    wat--;
-    moi++;
-    if (wat <0){
-        wat = 100;
-    }
-    if (moi >100){
-        moi = 0;
-    }
+
+    int wat = 100;
+
+    int moi = map(myPlant.Moisture(), 0, 1023, 0, 100);
     int lum = map(luminosity, 0, 255, 100, 0);
 
-    int var = map(co2, 0, 1000, 0, 100);
+    int var = map(co2, 0, 8000, 0, 100);
     myPlant.LCDprint("j0", String(var), 255*var/100, (255*(100-var))/100, 0);
     var = map(temp, 20, 40, 0, 100);
     myPlant.LCDprint("j1", String(var), 255*var/100, (255*(100-var))/100, 0);
@@ -60,7 +54,7 @@ void loop(){
     myPlant.LCDprint("j2", String(var), 255*var/100, (255*(100-var))/100, 0);
     var = map(wat, 0, 100, 0, 100);
     myPlant.LCDprint("j4", String(var), (255*(100-var))/100, 255*var/100, 0);
-    var = map(moi, 0, 100, 0, 100);
+    var = moi;
     myPlant.LCDprint("j5", String(var), (255*(100-var))/100, 255*var/100, 0);
     var = lum;
     myPlant.LCDprint("j6", String(var), (255*(100-var))/100, 255*var/100, 0);
