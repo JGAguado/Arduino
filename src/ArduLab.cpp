@@ -14,6 +14,10 @@ Distributed as-is; no warranty is given.
 ******************************************************************************/
  
 #include "ArduLab.h"
+#include <SoftwareSerial.h>
+
+// Nextion LCD Init
+  SoftwareSerial LCD(14, 15);
 
 ArduLab::ArduLab()
 {
@@ -31,6 +35,9 @@ ArduLab::ArduLab()
 
   // Basic Inputs
   pinMode(_pushbutton, INPUT);
+  
+  // LCD Initialization
+  LCD.begin(9600);
 }
  
 void ArduLab::Beep()
@@ -93,4 +100,44 @@ void ArduLab::MotorB(int dir)
     digitalWrite(_motor_b_1, LOW);
     digitalWrite(_motor_b_2, HIGH);    
   }
+}
+
+void ArduLab::LCDprint(String component, String value, int r, int g, int b)
+{
+  if ((r!=0)||(g!=0)||(b!=0)){
+  unsigned int color = int(r/8)*2048+int(g/4)*32+int(b/8);
+
+  LCD.print(component);
+  LCD.print(".pco=");
+  LCD.print(color);
+  LCD.write(0xff);
+  LCD.write(0xff);
+  LCD.write(0xff);
+  }
+  if (component == "light"){
+    LCD.print("dim=");
+    LCD.print(value);
+    LCD.write(0xff);
+    LCD.write(0xff);
+    LCD.write(0xff);
+  }
+  else if (component[0] == 't'){  
+    LCD.print(component);
+    LCD.print(".txt=");
+    LCD.write(0x22);
+    LCD.print(value);
+    LCD.write(0x22);
+    LCD.write(0xff);
+    LCD.write(0xff);
+    LCD.write(0xff);
+  }
+  else{
+    LCD.print(component);
+    LCD.print(".val=");
+    LCD.print(value);
+    LCD.write(0xff);
+    LCD.write(0xff);
+    LCD.write(0xff);
+  }
+
 }

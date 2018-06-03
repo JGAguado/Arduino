@@ -32,6 +32,7 @@ class ArduLab{
         int Light();
         void MotorA(int dir);
         void MotorB(int dir);
+		void LCDprint(String component, String value, int r=0, int g=0, int b=0);
 
     private:    	
     	byte _buzzer = 4;
