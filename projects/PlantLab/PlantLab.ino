@@ -16,8 +16,8 @@ Distributed as-is; no warranty is given.
 
 DomoMod myPlant;
 void setup(){
-    myPlant.DomoMod_init();
     Serial.begin(9600);
+    myPlant.DomoMod_init();
     delay(1000);
 }
 
@@ -36,5 +36,6 @@ void loop(){
     // }
     int luminosity = map(myPlant.Light(), 0, 1023, 255, 0);
     myPlant.LED(luminosity);
+
     delay(1000);
 }
