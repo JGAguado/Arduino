@@ -15,6 +15,10 @@ Distributed as-is; no warranty is given.
 #include <DomoMod.h>
 
 DomoMod myPlant;
+
+int moi = 0;
+int wat = 100;
+
 void setup(){
     Serial.begin(9600);
     myPlant.DomoMod_init();
@@ -22,10 +26,10 @@ void setup(){
 }
 
 void loop(){
-    myPlant.Temperature(true);
-    myPlant.Pressure(true);
-    myPlant.Humidity(true);
-    myPlant.CO2(true);
+    int temp = myPlant.Temperature(true);
+    int pres = myPlant.Pressure(true);
+    int hum = myPlant.Humidity(true);
+    int co2 = myPlant.CO2(true);
     myPlant.TVOC(true);
 
     // if (myPlant.PushButton()){
@@ -36,6 +40,38 @@ void loop(){
     // }
     int luminosity = map(myPlant.Light(), 0, 1023, 255, 0);
     myPlant.LED(luminosity);
+    wat--;
+    moi++;
+    if (wat <0){
+        wat = 100;
+    }
+    if (moi >100){
+        moi = 0;
+    }
+    int lum = map(luminosity, 0, 255, 100, 0);
 
+    int var = map(co2, 0, 1000, 0, 100);
+    myPlant.LCDprint("j0", String(var), 255*var/100, (255*(100-var))/100, 0);
+    var = map(temp, 20, 40, 0, 100);
+    myPlant.LCDprint("j1", String(var), 255*var/100, (255*(100-var))/100, 0);
+    var = map(pres, 900, 1000, 0, 100);
+    myPlant.LCDprint("j3", String(var), 255*var/100, (255*(100-var))/100, 0);
+    var = map(hum, 0, 100, 0, 100);
+    myPlant.LCDprint("j2", String(var), 255*var/100, (255*(100-var))/100, 0);
+    var = map(wat, 0, 100, 0, 100);
+    myPlant.LCDprint("j4", String(var), (255*(100-var))/100, 255*var/100, 0);
+    var = map(moi, 0, 100, 0, 100);
+    myPlant.LCDprint("j5", String(var), (255*(100-var))/100, 255*var/100, 0);
+    var = lum;
+    myPlant.LCDprint("j6", String(var), (255*(100-var))/100, 255*var/100, 0);
+    myPlant.LCDprint("light", String(var));
+
+    myPlant.LCDprint("t0", String(co2)+"ppm");
+    myPlant.LCDprint("t1", String(temp)+"C");
+    myPlant.LCDprint("t2", String(pres)+"hPa");
+    myPlant.LCDprint("t3", String(hum)+"%");
+    myPlant.LCDprint("t4", String(wat)+"%");
+    myPlant.LCDprint("t5", String(moi)+"%");
+    myPlant.LCDprint("t6", String(lum)+"%");
     delay(1000);
 }
