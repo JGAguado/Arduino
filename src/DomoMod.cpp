@@ -13,17 +13,15 @@ Distributed as-is; no warranty is given.
 
 ******************************************************************************/
 #include <Servo.h>
-#include <Adafruit_CCS811.h>
 #include <Wire.h>
-#include <SPI.h>
 #include <Adafruit_Sensor.h>
+#include <Adafruit_CCS811.h>
 #include <Adafruit_BME280.h>
-#include <Adafruit_PN532.h>
+#include <PN532_I2C.h>
+#include <PN532.h>
+#include <NfcAdapter.h>
 
 #include <DomoMod.h>
-
-#define PN532_IRQ   (2)
-#define PN532_RESET (3)  // Not connected by default on the NFC Shield
 
 #define BME_SCK 13
 #define BME_MISO 12
@@ -36,7 +34,8 @@ Servo _servo;
 
 Adafruit_CCS811 ccs;
 Adafruit_BME280 bme;
-Adafruit_PN532 nfc(PN532_IRQ, PN532_RESET);
+PN532_I2C pn532_i2c(Wire);
+NfcAdapter nfc = NfcAdapter(pn532_i2c);
 
 DomoMod::DomoMod()
 {  
@@ -56,19 +55,11 @@ void DomoMod::DomoMod_init(){
     if (!bme.begin()) {
         Serial.println("Failed to init BME280 sensor!");
         // while(1);
-    }
+    }    
 
-    // PN532 - RFID Reader
+    // PN532 - NFC RFID Reader
     nfc.begin();
-    uint32_t versiondata = nfc.getFirmwareVersion();
-    if (! versiondata) {
-        Serial.print("NFC MOdule not found");
-        while (1); 
-    }
-    
-    // RFID Reader initialization
-    nfc.setPassiveActivationRetries(0xFF);
-    nfc.SAMConfig();
+   
 }
 float DomoMod::Temperature(bool debug){
     float temp = bme.readTemperature();
@@ -141,21 +132,36 @@ int DomoMod::TVOC(bool debug){
 int DomoMod::Presence(){ 
     return analogRead(_presence);
 }
-void DomoMod::RFID(){ 
+String DomoMod::RFID(bool debug){ 
+    String id = "";
+    if (nfc.tagPresent())
+    {
+        NfcTag tag = nfc.read();
+        id = tag.getUidString();
+        
+        if (debug){
+            Serial.println(uid);
+        }
+    }
+    return id;
 
 }
 void DomoMod::Servo(int pos){ 
     _servo.write(pos);
 }
+
 void DomoMod::LED(int power){
     analogWrite(_led, power);
  }
+
 int DomoMod::LDR(){
         return analogRead(_ldr);
  }
+
 int DomoMod::NTC(){ 
         return analogRead(_ntc);
 }
+
 int DomoMod::Moisture(){ 
         return analogRead(_moisture);
 }

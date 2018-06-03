@@ -34,7 +34,7 @@ class DomoMod : public ArduLab{
         int CO2(bool debug = false);
         int TVOC(bool debug = false);
         int Presence();
-        void RFID();
+        String RFID(bool debug = false);
         void Servo(int pos);
         void LED(int power);
         int LDR();
