@@ -140,7 +140,7 @@ String DomoMod::RFID(bool debug){
         id = tag.getUidString();
         
         if (debug){
-            Serial.println(uid);
+            Serial.println(id);
         }
     }
     return id;
