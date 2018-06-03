@@ -40,6 +40,7 @@ NfcAdapter nfc = NfcAdapter(pn532_i2c);
 DomoMod::DomoMod()
 {  
     pinMode(_led, OUTPUT);
+    pinMode(_power_moisture, OUTPUT);
 }
 
 void DomoMod::DomoMod_init(){
@@ -154,14 +155,32 @@ void DomoMod::LED(int power){
     analogWrite(_led, power);
  }
 
-int DomoMod::LDR(){
-        return analogRead(_ldr);
+int DomoMod::LDR(bool debug){
+    int ldr = analogRead(_ldr);
+
+    if (debug){
+        Serial.println(ldr);
+    } 
+    return ldr;
  }
 
-int DomoMod::NTC(){ 
-        return analogRead(_ntc);
+int DomoMod::NTC(bool debug){
+    int ntc = analogRead(_ntc);
+
+    if (debug){
+        Serial.println(ntc);
+    } 
+    return ntc;
 }
 
-int DomoMod::Moisture(){ 
-        return analogRead(_moisture);
+int DomoMod::Moisture(bool debug){ 
+    digitalWrite(_power_moisture, HIGH);
+    delay(100);
+    int moisture = analogRead(_moisture);
+    digitalWrite(_power_moisture, LOW);
+
+    if (debug){
+        Serial.println(moisture);
+    }
+    return moisture;
 }

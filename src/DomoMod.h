@@ -37,15 +37,16 @@ class DomoMod : public ArduLab{
         String RFID(bool debug = false);
         void Servo(int pos);
         void LED(int power);
-        int LDR();
-        int NTC();
-        int Moisture();
+        int LDR(bool debug = false);
+        int NTC(bool debug = false);
+        int Moisture(bool debug = false);
 
     private:
         
         
         byte _servo_pin = 5;
         byte _led = 6;
+        byte _power_moisture = 7;
 
         int _ldr = A1;
         int _presence = A2;
