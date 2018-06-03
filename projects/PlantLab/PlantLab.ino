@@ -1,7 +1,7 @@
 /******************************************************************************
 
-Basics example
-Example sketch for testing basic DomoMod board functions.
+PlantLab Project
+Fully working project of an smart Pot for hosting small plants.
 Created by J.G.Aguado
 May 29, 2018  
 https://github.com/SpaceDIY/ArduLab
@@ -14,19 +14,27 @@ Distributed as-is; no warranty is given.
 ******************************************************************************/
 #include <DomoMod.h>
 
-DomoMod myHome;
+DomoMod myPlant;
 void setup(){
-    myHome.DomoMod_init();
+    myPlant.DomoMod_init();
     Serial.begin(9600);
     delay(1000);
 }
 
 void loop(){
-    myHome.Temperature(true);
-    myHome.Pressure(true);
-    myHome.Humidity(true);
-    myHome.CO2(true);
-    myHome.TVOC(true);
+    myPlant.Temperature(true);
+    myPlant.Pressure(true);
+    myPlant.Humidity(true);
+    myPlant.CO2(true);
+    myPlant.TVOC(true);
 
+    // if (myPlant.PushButton()){
+    //     myPlant.MotorB(1);
+    // }
+    // else{
+    //     myPlant.MotorB(0);
+    // }
+    int luminosity = map(myPlant.Light(), 0, 1023, 255, 0);
+    myPlant.LED(luminosity);
     delay(1000);
 }
