@@ -45,7 +45,7 @@ char input[INPUT_SIZE + 1];
 byte size = Serial1.readBytes(input, INPUT_SIZE);
 // Add the final 0 to end the C string
 input[size] = 0;
-char* separator = strchr(input, ' ');
+char* separator = strchr(input, ';');
 if (separator != 0)
 {
     *separator = 0;

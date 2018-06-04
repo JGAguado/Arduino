@@ -77,7 +77,7 @@ while (command != 0)
 CAYENNE_IN_DEFAULT()
 {
 	Serial.print(request.channel);
-	Serial.print(" ");
+	Serial.print(";");
 	Serial.println(getValue.asString());
 	
 	//Process message here. If there is an error set an error message using getValue.setError(), e.g getValue.setError("Error message");
