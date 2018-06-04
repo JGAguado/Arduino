@@ -24,11 +24,11 @@ void setup(){
 }
 
 void loop(){
-    int temp = myPlant.Temperature(true);
-    int pres = myPlant.Pressure(true);
-    int hum = myPlant.Humidity(true);
-    int co2 = myPlant.CO2(true);
-    myPlant.TVOC(true);
+    int temp = myPlant.Temperature();
+    int pres = myPlant.Pressure();
+    int hum = myPlant.Humidity();
+    int co2 = myPlant.CO2();
+    myPlant.TVOC();
 
     if (myPlant.PushButton()){
         myPlant.MotorB(1);
@@ -45,27 +45,24 @@ void loop(){
     int lum = map(luminosity, 0, 255, 100, 0);
 
     int var = map(co2, 0, 8000, 0, 100);
-    myPlant.LCDprint("j0", String(var), 255*var/100, (255*(100-var))/100, 0);
+    myPlant.LCD_bar("j0", var, 1);
     var = map(temp, 20, 40, 0, 100);
-    myPlant.LCDprint("j1", String(var), 255*var/100, (255*(100-var))/100, 0);
-    var = map(pres, 900, 1000, 0, 100);
-    myPlant.LCDprint("j3", String(var), 255*var/100, (255*(100-var))/100, 0);
-    var = map(hum, 0, 100, 0, 100);
-    myPlant.LCDprint("j2", String(var), 255*var/100, (255*(100-var))/100, 0);
+    myPlant.LCD_bar("j1", var, 2);
+    var = map(pres, 850, 1050, 0, 100);
+    myPlant.LCD_bar("j3", var, 2);
+    myPlant.LCD_bar("j2", hum, 2);
     var = map(wat, 0, 100, 0, 100);
-    myPlant.LCDprint("j4", String(var), (255*(100-var))/100, 255*var/100, 0);
-    var = moi;
-    myPlant.LCDprint("j5", String(var), (255*(100-var))/100, 255*var/100, 0);
-    var = lum;
-    myPlant.LCDprint("j6", String(var), (255*(100-var))/100, 255*var/100, 0);
-    myPlant.LCDprint("light", String(var));
+    myPlant.LCD_bar("j4", var, 0);
+    myPlant.LCD_bar("j5", moi, 0);
+    myPlant.LCD_bar("j6", lum, 0);
+    myPlant.LCD_backlight(lum);
 
-    myPlant.LCDprint("t0", String(co2)+"ppm");
-    myPlant.LCDprint("t1", String(temp)+"C");
-    myPlant.LCDprint("t2", String(pres)+"hPa");
-    myPlant.LCDprint("t3", String(hum)+"%");
-    myPlant.LCDprint("t4", String(wat)+"%");
-    myPlant.LCDprint("t5", String(moi)+"%");
-    myPlant.LCDprint("t6", String(lum)+"%");
+    myPlant.LCD_text("t0", String(co2)+"ppm");
+    myPlant.LCD_text("t1", String(temp)+"C");
+    myPlant.LCD_text("t2", String(pres)+"hPa");
+    myPlant.LCD_text("t3", String(hum)+"%");
+    myPlant.LCD_text("t4", String(wat)+"%");
+    myPlant.LCD_text("t5", String(moi)+"%");
+    myPlant.LCD_text("t6", String(lum)+"%");
     delay(1000);
 }
