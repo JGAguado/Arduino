@@ -102,9 +102,64 @@ void ArduLab::MotorB(int dir)
   }
 }
 
-void ArduLab::LCDprint(String component, String value, int r, int g, int b)
+void ArduLab::LCD_bar(String component, int value, byte type)
+/* Type variable explanation:
+  0:  Min val -> red
+      Medium val -> yellow
+      Max val -> green
+
+  1:  Min val -> green
+      Medium val -> yellow
+      Max val -> red
+
+  2:  Min val -> red
+      Medium val -> green
+      Max val -> red
+ */
+
 {
-  if ((r!=0)||(g!=0)||(b!=0)){
+  int r, g, b;
+  b = 0;
+
+  if (type == 0){
+    if ((0<=value) && (value<50)){
+      r = 255;
+      g = 5.1 * value;        
+    }
+    if ((50<=value) && (value<=100)){  
+      g = 255;
+      r = 255 - 5.1 * (value-50);
+    }
+  }
+  else if (type == 1){
+    if ((0<=value) && (value<50)){
+      g = 255;
+      r = 5.1 * value;        
+    }
+    if ((50<=value) && (value<=100)){  
+      r = 255;
+      g = 255 - 5.1 * (value-50);
+    }
+  }
+  else if (type == 2){
+    if ((0<=value) && (value<33)){
+      r = 255;
+      g = 8.5 * value;        
+    }
+    if ((33<=value) && (value<50)){  
+      g = 255;
+      r = 255 - 15 * (value-33);
+    }
+    if ((50<=value) && (value<66)){  
+      g = 255;
+      r = 15.93 * (value-50);
+    }
+    if ((66<=value) && (value<=100)){
+      r = 255;
+      g = 255 - 7.5 * (value - 66); 
+    }
+  }
+
   unsigned int color = int(r/8)*2048+int(g/4)*32+int(b/8);
 
   LCD.print(component);
@@ -113,31 +168,32 @@ void ArduLab::LCDprint(String component, String value, int r, int g, int b)
   LCD.write(0xff);
   LCD.write(0xff);
   LCD.write(0xff);
-  }
-  if (component == "light"){
-    LCD.print("dim=");
-    LCD.print(value);
-    LCD.write(0xff);
-    LCD.write(0xff);
-    LCD.write(0xff);
-  }
-  else if (component[0] == 't'){  
-    LCD.print(component);
-    LCD.print(".txt=");
-    LCD.write(0x22);
-    LCD.print(value);
-    LCD.write(0x22);
-    LCD.write(0xff);
-    LCD.write(0xff);
-    LCD.write(0xff);
-  }
-  else{
-    LCD.print(component);
-    LCD.print(".val=");
-    LCD.print(value);
-    LCD.write(0xff);
-    LCD.write(0xff);
-    LCD.write(0xff);
-  }
+    
+  LCD.print(component);
+  LCD.print(".val=");
+  LCD.print(value);
+  LCD.write(0xff);
+  LCD.write(0xff);
+  LCD.write(0xff);  
+}
 
+void ArduLab::LCD_text(String component, String value)
+{    
+  LCD.print(component);
+  LCD.print(".txt=");
+  LCD.write(0x22);
+  LCD.print(value);
+  LCD.write(0x22);
+  LCD.write(0xff);
+  LCD.write(0xff);
+  LCD.write(0xff);  
+}
+
+void ArduLab::LCD_backlight(int value)
+{
+  LCD.print("dim=");
+  LCD.print(value);
+  LCD.write(0xff);
+  LCD.write(0xff);
+  LCD.write(0xff);
 }
