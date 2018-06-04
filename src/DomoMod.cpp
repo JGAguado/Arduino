@@ -43,7 +43,7 @@ DomoMod::DomoMod()
     pinMode(_power_moisture, OUTPUT);
 }
 
-void DomoMod::DomoMod_init(){
+void DomoMod::DomoMod_init(bool NFC){
     _servo.attach(_servo_pin);
     
     // CCS811 - Air Quality Sensor
@@ -59,8 +59,9 @@ void DomoMod::DomoMod_init(){
     }    
 
     // PN532 - NFC RFID Reader
-    nfc.begin();
-   
+    if (NFC){
+        nfc.begin();
+    }
 }
 float DomoMod::Temperature(bool debug){
     float temp = bme.readTemperature();

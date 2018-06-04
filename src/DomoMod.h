@@ -27,7 +27,7 @@ Distributed as-is; no warranty is given.
 class DomoMod : public ArduLab{
     public:
         DomoMod();   
-        void DomoMod_init();
+        void DomoMod_init(bool NFC=false);
         float Temperature(bool debug = false);
         float Pressure(bool debug = false);
         float Humidity(bool debug = false);
