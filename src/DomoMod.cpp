@@ -157,7 +157,7 @@ void DomoMod::LED(int power){
  }
 
 int DomoMod::LDR(bool debug){
-    int ldr = analogRead(_ldr);
+    int ldr = map(analogRead(_ldr), 0, 1023, 0, 100);
 
     if (debug){
         Serial.println(ldr);
