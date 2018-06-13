@@ -17,7 +17,7 @@ Distributed as-is; no warranty is given.
 #include <SoftwareSerial.h>
 
 // Nextion LCD Init
-  SoftwareSerial LCD(14, 15);
+SoftwareSerial LCD(14, 15);
 
 ArduLab::ArduLab()
 {
@@ -39,13 +39,18 @@ ArduLab::ArduLab()
   // LCD Initialization
   LCD.begin(9600);
 }
- 
+
 void ArduLab::Beep()
 {
   digitalWrite(_buzzer, HIGH);
   delay(250);
   digitalWrite(_buzzer, LOW);
   delay(250);  
+}
+
+void ArduLab::Play(int note, int duration)
+{
+  tone(_buzzer, note, duration);
 }
 
 void ArduLab::RGB(int r, int g, int b)
@@ -60,14 +65,16 @@ boolean ArduLab::PushButton()
   return digitalRead(_pushbutton);
 }
 
-int ArduLab::Battery()
+float ArduLab::Battery()
 {
-  return analogRead(_battery);
+  float status = map(analogRead(_battery), 0, 1023, 0, 5);
+  return status;
 }
 
 int ArduLab::Light()
 {
-  return analogRead(_ldr);
+  int lum = map(analogRead(_lum), 0, 1023, 0, 100);
+  return lum;
 }
 
 void ArduLab::MotorA(int dir)
@@ -126,7 +133,7 @@ void ArduLab::LCD_bar(String component, int value, byte type)
       r = 255;
       g = 5.1 * value;        
     }
-    if ((50<=value) && (value<=100)){  
+    else if ((50<=value) && (value<=100)){  
       g = 255;
       r = 255 - 5.1 * (value-50);
     }
@@ -136,7 +143,7 @@ void ArduLab::LCD_bar(String component, int value, byte type)
       g = 255;
       r = 5.1 * value;        
     }
-    if ((50<=value) && (value<=100)){  
+    else if ((50<=value) && (value<=100)){  
       r = 255;
       g = 255 - 5.1 * (value-50);
     }
@@ -146,15 +153,15 @@ void ArduLab::LCD_bar(String component, int value, byte type)
       r = 255;
       g = 8.5 * value;        
     }
-    if ((33<=value) && (value<50)){  
+    else if ((33<=value) && (value<50)){  
       g = 255;
       r = 255 - 15 * (value-33);
     }
-    if ((50<=value) && (value<66)){  
+    else if ((50<=value) && (value<66)){  
       g = 255;
       r = 15.93 * (value-50);
     }
-    if ((66<=value) && (value<=100)){
+    else if ((66<=value) && (value<=100)){
       r = 255;
       g = 255 - 7.5 * (value - 66); 
     }

@@ -27,8 +27,9 @@ class ArduLab{
         ArduLab();
         void RGB(int r, int g, int b);
         void Beep();
+		void Play(int note, int duration);
         bool PushButton();
-        int Battery();
+        float Battery();
         int Light();
         void MotorA(int dir);
         void MotorB(int dir);
@@ -44,7 +45,7 @@ class ArduLab{
     	byte _blue = 6;
     	byte _pushbutton = 16;
     	int _battery = A0;
-    	int _ldr = A5;
+    	int _lum = A5;
 
     	byte _motor_b_1 = 9;
     	byte _motor_b_2 = 10;
