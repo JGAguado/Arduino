@@ -17,7 +17,7 @@ Steps:
 #define INPUT_SIZE 30
 
 // WiFi network info.
-char ssid[] = "*****";
+char ssid[] = "******";
 char wifiPassword[] = "******";
 
 // Cayenne authentication info. This should be obtained from the Cayenne Dashboard.
@@ -60,7 +60,21 @@ while (command != 0)
         int id = atoi(command);
         ++separator;
         int value = atoi(separator);
-        Cayenne.virtualWrite(id, value);
+        ++separator;
+        int type = atoi(separator);
+        ++separator;
+        if (type==0){
+            Cayenne.virtualWrite(id, value);
+        }
+        else if (type == 1){
+            Cayenne.virtualWrite(id, value, "temp", "c");
+        }
+        else if (type == 2){
+            Cayenne.virtualWrite(id, value, "bp", "hpa");
+        }
+        String n_msg = String(id)+"_"+String(value)+"_"+String(type);
+        Serial.println(n_msg);
+
     }
     // Find the next command in input string
     command = strtok(0, "&");
