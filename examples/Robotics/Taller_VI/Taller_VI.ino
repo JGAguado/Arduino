@@ -1,7 +1,7 @@
 /******************************************************************************
 
-Taller_V.cpp
-Laser Tag
+Taller_VI.cpp
+Parktronic
 Created by J.G.Aguado
 June 19, 2018  
 https://github.com/SpaceDIY/ArduLab
@@ -17,27 +17,28 @@ Distributed as-is; no warranty is given.
 
 BotMod myBot;
 
-int lum;
-int lum_led;
+long distance;
+int freq;
+int duration;
+
+int intensity;
 
 void setup(){
     Serial.begin(9600);
 }
 
 void loop(){
-    lum = myBot.Left_LDR();
+    distance = myBot.Get_Distance();
 
-    Serial.print("Luminosity: ");
-    Serial.println(lum);
+    Serial.print("Distance: ");
+    Serial.print(lum);
+    Serial.println(" cm.");
     
-    if (lum < 80){
-        myBot.Beep();
-    }
+    freq = map(distance, 0, 150, 5000, 300);
+    duration = map(distance, 0, 150, 75, 800);
+    myBot.Play(tone, duration);
 
-    if (myBot.PushButton()){
-        myBot.Laser(255);
-    }
-    else{
-        myBot.Laser(0);
-    }
+    intensity = map(distance, 0, 150, 255, 0);
+
+    myBot.RGB(intensity, 255-intensity, 0);
 }
