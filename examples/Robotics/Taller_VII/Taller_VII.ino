@@ -1,7 +1,7 @@
 /******************************************************************************
 
-Taller_V.cpp
-Laser Tag
+Taller_VII.ino
+
 Created by J.G.Aguado
 June 19, 2018  
 https://github.com/SpaceDIY/ArduLab
@@ -13,31 +13,26 @@ Distributed as-is; no warranty is given.
 
 ******************************************************************************/
 
+
 #include <BotMod.h>
 
 BotMod myBot;
 
-int lum;
-int lum_led;
+long distance;
+int distance_mapped;
 
 void setup(){
-    Serial.begin(9600);
+    myBot.BotMod_init()
 }
 
 void loop(){
-    lum = myBot.Left_LDR();
+    distance = myBot.Get_Distance();
 
-    Serial.print("Luminosity: ");
-    Serial.println(lum);
+    Serial.print("Distance: ");
+    Serial.print(lum);
+    Serial.println(" cm.");
     
-    if (lum < 80){
-        myBot.Beep();
-    }
-
-    if (myBot.PushButton()){
-        myBot.Laser(255);
-    }
-    else{
-        myBot.Laser(0);
-    }
+    distance_mapped = map(distance, 0,250, 0, 100);
+    myBot.LCD_text("t0", distance);
+    myBot.LCD_bar("j0", distance_mapped, 0);
 }

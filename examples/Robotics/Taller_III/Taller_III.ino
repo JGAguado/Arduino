@@ -22,26 +22,26 @@ void setup(){
 
 void loop(){
     for (int i=0; i<=255; i++){
-        myArduLab.RGB(255-i; i; 0);
+        myArduLab.RGB(255-i, i, 0);
     }
 
     for (int i=0; i<=255; i++){
-        myArduLab.RGB(i; 255-i; 0);
+        myArduLab.RGB(i, 255-i, 0);
     }
     
     for (int i=0; i<=255; i++){
-        myArduLab.RGB(i; 0; 255-i);
+        myArduLab.RGB(i, 0, 255-i);
     }
 
     for (int i=0; i<=255; i++){
-        myArduLab.RGB(255-i; 0; i);
+        myArduLab.RGB(255-i, 0, i);
     }
 
     for (int i=0; i<=255; i++){
-        myArduLab.RGB(0; i; 255-i);
+        myArduLab.RGB(0, i, 255-i);
     }
 
     for (int i=0; i<=255; i++){
-        myArduLab.RGB(0; 255-i; i);
+        myArduLab.RGB(0, 255-i, i);
     }
 }
