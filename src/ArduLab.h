@@ -33,10 +33,12 @@ class ArduLab{
         int Light();
         void MotorA(int dir);
         void MotorB(int dir);
+		void Stepper(int dir, int turns=1, int speed=60);
 		void LCDprint(String component, String value, int r=0, int g=0, int b=0);
 		void LCD_bar(String component, int value, byte type=0);
 		void LCD_text(String component, String value);
 		void LCD_backlight(int value);
+
 
     private:    	
     	byte _buzzer = 4;

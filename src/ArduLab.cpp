@@ -109,6 +109,71 @@ void ArduLab::MotorB(int dir)
   }
 }
 
+void ArduLab::Stepper(int dir, int turns, int speed)
+/* int dir:
+    0:  CW
+    1:  CCW
+  int turns:
+    Number of turns to rotate. By default values 1 (turn)
+  int speed:
+    RPM at which the stepper rotates. By default values 60 (rpm)
+ */
+{
+  int delayTime = ((speed/60)/4)*1000;
+  if (dir==0){
+    for (int i=0; i<=turns; i++){
+      digitalWrite(_motor_a_1, HIGH);
+      digitalWrite(_motor_a_2, LOW);
+      digitalWrite(_motor_b_1, LOW);
+      digitalWrite(_motor_b_2, LOW);
+      delay(delayTime);
+      digitalWrite(_motor_a_1, LOW);
+      digitalWrite(_motor_a_2, HIGH);
+      digitalWrite(_motor_b_1, LOW);
+      digitalWrite(_motor_b_2, LOW);
+      delay(delayTime);
+      digitalWrite(_motor_a_1, LOW);
+      digitalWrite(_motor_a_2, LOW);
+      digitalWrite(_motor_b_1, HIGH);
+      digitalWrite(_motor_b_2, LOW);
+      delay(delayTime);
+      digitalWrite(_motor_a_1, LOW);
+      digitalWrite(_motor_a_2, LOW);
+      digitalWrite(_motor_b_1, LOW);
+      digitalWrite(_motor_b_2, HIGH);
+      delay(delayTime);
+    }
+  }
+  else if (dir ==1){    
+    for (int i=0; i<=turns; i++){
+        digitalWrite(_motor_a_1, LOW);
+        digitalWrite(_motor_a_2, LOW);
+        digitalWrite(_motor_b_1, LOW);
+        digitalWrite(_motor_b_2, HIGH);
+        delay(delayTime);
+        digitalWrite(_motor_a_1, LOW);
+        digitalWrite(_motor_a_2, LOW);
+        digitalWrite(_motor_b_1, HIGH);
+        digitalWrite(_motor_b_2, LOW);
+        delay(delayTime);
+        digitalWrite(_motor_a_1, LOW);
+        digitalWrite(_motor_a_2, HIGH);
+        digitalWrite(_motor_b_1, LOW);
+        digitalWrite(_motor_b_2, LOW);
+        delay(delayTime);
+        digitalWrite(_motor_a_1, HIGH);
+        digitalWrite(_motor_a_2, LOW);
+        digitalWrite(_motor_b_1, LOW);
+        digitalWrite(_motor_b_2, LOW);
+        delay(delayTime);
+      }
+  }        
+  digitalWrite(_motor_a_1, LOW);
+  digitalWrite(_motor_a_2, LOW);
+  digitalWrite(_motor_b_1, LOW);
+  digitalWrite(_motor_b_2, LOW);
+
+}
 void ArduLab::LCD_bar(String component, int value, byte type)
 /* Type variable explanation:
   0:  Min val -> red
