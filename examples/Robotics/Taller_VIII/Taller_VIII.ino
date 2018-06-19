@@ -17,7 +17,7 @@ Distributed as-is; no warranty is given.
 
 ArduLab myArduLab;
 
-int BCD_0 = 4;
+int BCD_0 = 10 ;
 int BCD_1 = 5;
 int BCD_2 = 6;
 int BCD_3 = 7;
@@ -37,10 +37,9 @@ void setup(){
 
 void loop(){
     for (int ii=0; ii<100; ii++){
-        digitalWrite(13, HIGH);
         Serial.println(ii);
         if (ii>=10){
-            multi_display(ii, 1000);
+            multi_display(ii, 100);
         }
         else{
             digitalWrite(Dig_0, HIGH);
@@ -48,14 +47,12 @@ void loop(){
             dec_2_bcd(ii);
             delay(1000);            
         }
-        digitalWrite(13, LOW);
-        delay(500);
     }    
 }
 
 void dec_2_bcd(int num){
     switch (num){
-        case '0':
+        case 0:
             digitalWrite(BCD_0, LOW);
             Serial.print(0);
             digitalWrite(BCD_1, LOW);
@@ -66,7 +63,7 @@ void dec_2_bcd(int num){
             Serial.println(0);
             break;
         
-        case '1':
+        case 1:
             digitalWrite(BCD_0, LOW);
             Serial.print(0);
             digitalWrite(BCD_1, LOW);
@@ -77,7 +74,7 @@ void dec_2_bcd(int num){
             Serial.println(1);
             break;
             
-        case '2':
+        case 2:
             digitalWrite(BCD_0, LOW);
             Serial.print(0);
             digitalWrite(BCD_1, LOW);
@@ -88,7 +85,7 @@ void dec_2_bcd(int num){
             Serial.println(0);
             break;
             
-        case '3':
+        case 3:
             digitalWrite(BCD_0, LOW);
             Serial.print(0);
             digitalWrite(BCD_1, LOW);
@@ -99,7 +96,7 @@ void dec_2_bcd(int num){
             Serial.println(1);
             break;
             
-        case '4':
+        case 4:
             digitalWrite(BCD_0, LOW);
             Serial.print(0);
             digitalWrite(BCD_1, HIGH);
@@ -110,7 +107,7 @@ void dec_2_bcd(int num){
             Serial.println(0);
             break;
                  
-        case '5':
+        case 5:
             digitalWrite(BCD_0, LOW);
             Serial.print(0);
             digitalWrite(BCD_1, HIGH);
@@ -121,7 +118,7 @@ void dec_2_bcd(int num){
             Serial.println(1);
             break;
             
-        case '6':
+        case 6:
             digitalWrite(BCD_0, LOW);
             Serial.print(0);
             digitalWrite(BCD_1, HIGH);
@@ -132,7 +129,7 @@ void dec_2_bcd(int num){
             Serial.println(0);
             break;
             
-        case '7':
+        case 7:
             digitalWrite(BCD_0, LOW);
             Serial.print(0);
             digitalWrite(BCD_1, HIGH);
@@ -143,7 +140,7 @@ void dec_2_bcd(int num){
             Serial.println(1);
             break;
             
-        case '8':
+        case 8:
             digitalWrite(BCD_0, HIGH);
             Serial.print(1);
             digitalWrite(BCD_1, LOW);
@@ -154,7 +151,7 @@ void dec_2_bcd(int num){
             Serial.println(0);
             break;
                  
-        case '9':
+        case 9:
             digitalWrite(BCD_0, HIGH);
             Serial.print(1);
             digitalWrite(BCD_1, LOW);
@@ -174,12 +171,12 @@ void multi_display(int num, int duration){
     for (int t=0; t<=duration/2; t++){
         digitalWrite(Dig_0, HIGH);
         digitalWrite(Dig_1, LOW);
-        dec_2_bcd(dig1);
-        delay(1);
+        dec_2_bcd(dig2);
+        delay(10);
 
         digitalWrite(Dig_0, LOW);
         digitalWrite(Dig_1, HIGH);
-        dec_2_bcd(dig2);
-        delay(1);
+        dec_2_bcd(dig1);
+        delay(10);
     }
 }
