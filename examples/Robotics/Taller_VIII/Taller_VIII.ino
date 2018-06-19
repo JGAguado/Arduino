@@ -1,7 +1,7 @@
 /******************************************************************************
 
-Taller_V.cpp
-Laser Tag
+Taller_VII.ino
+
 Created by J.G.Aguado
 June 19, 2018  
 https://github.com/SpaceDIY/ArduLab
@@ -17,13 +17,13 @@ Distributed as-is; no warranty is given.
 
 ArduLab myArduLab;
 
-int BCD_0 = 10 ;
-int BCD_1 = 5;
-int BCD_2 = 6;
-int BCD_3 = 7;
+int BCD_0 = 5 ;
+int BCD_1 = 6;
+int BCD_2 = 7;
+int BCD_3 = 8;
 
-int Dig_0 = 8;
-int Dig_1 = 9;
+int Dig_0 = 9;
+int Dig_1 = 11;
 void setup(){
     Serial.begin(9600);
 

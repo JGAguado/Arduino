@@ -1,6 +1,6 @@
 /******************************************************************************
 
-Taller_I.cpp
+Taller_I.ino
 
 Created by J.G.Aguado
 June 19, 2018  
@@ -21,10 +21,10 @@ int pin_pushbutton = 16;
 bool pushed;
 
 void setup(){
-pinMode(pin_pushbutton, INPUT);
-pinMode(pin_red, OUTPUT);
-pinMode(pin_green, OUTPUT);
-pinMode(pin_blue, OUTPUT);
+    pinMode(pin_pushbutton, INPUT);
+    pinMode(pin_red, OUTPUT);
+    pinMode(pin_green, OUTPUT);
+    pinMode(pin_blue, OUTPUT);
 }
 
 void loop(){
@@ -32,6 +32,7 @@ void loop(){
     digitalWrite(pin_green, HIGH);
 
     pushed = digitalRead(pin_pushbutton);
+    
     if (pushed){
         delay(2000);
         digitalWrite(pin_red, HIGH);

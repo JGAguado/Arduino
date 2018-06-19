@@ -1,6 +1,6 @@
 /******************************************************************************
 
-Taller_IV.cpp
+Taller_IV.ini
 
 Created by J.G.Aguado
 June 19, 2018  
@@ -30,10 +30,10 @@ void loop(){
     Serial.print("Luminosity: ");
     Serial.println(lum);
     
-    lum_led = map(lum, 0,100, 0, 255);
+    lum_led = map(lum, 100, 0, 0, 255);
     myArduLab.RGB(lum_led,0,0);
 
-    if (lum < 50){
+    if (lum < 30){
         myArduLab.Beep();
     }
 }

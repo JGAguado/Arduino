@@ -1,6 +1,6 @@
 /******************************************************************************
 
-Taller_V.cpp
+Taller_V.ino
 Laser Tag
 Created by J.G.Aguado
 June 19, 2018  

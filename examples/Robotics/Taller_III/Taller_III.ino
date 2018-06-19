@@ -1,6 +1,6 @@
 /******************************************************************************
 
-Taller_III.cpp
+Taller_III.ino
 
 Created by J.G.Aguado
 June 19, 2018  
@@ -17,31 +17,44 @@ Distributed as-is; no warranty is given.
 
 ArduLab myArduLab;
 
+int t_step = 10;
+
 void setup(){
 }
 
 void loop(){
-    for (int i=0; i<=255; i++){
+    for (int i=0; i<=255; i++){         //255, 0, 0
         myArduLab.RGB(255-i, i, 0);
+        delay(t_step);                  //0, 255, 0
     }
 
-    for (int i=0; i<=255; i++){
-        myArduLab.RGB(i, 255-i, 0);
+    for (int i=0; i<=255; i++){         //0, 255, 0
+        myArduLab.RGB(0, 255-i, i);
+        delay(t_step);                  //0, 0, 255 
     }
     
-    for (int i=0; i<=255; i++){
+    for (int i=0; i<=255; i++){         //0, 0, 255
         myArduLab.RGB(i, 0, 255-i);
+        delay(t_step);                  //255, 0, 0
     }
 
-    for (int i=0; i<=255; i++){
-        myArduLab.RGB(255-i, 0, i);
+    for (int i=0; i<=255; i++){         //255, 0, 0
+        myArduLab.RGB(255, i, 0);
+        delay(t_step);                  //255, 255, 0
     }
 
-    for (int i=0; i<=255; i++){
-        myArduLab.RGB(0, i, 255-i);
+    for (int i=0; i<=255; i++){         //255, 255, 0
+        myArduLab.RGB(255-i, 255, i);
+        delay(t_step);                  //0, 255, 255
     }
 
-    for (int i=0; i<=255; i++){
-        myArduLab.RGB(0, 255-i, i);
+    for (int i=0; i<=255; i++){         //0, 255, 255
+        myArduLab.RGB(i, 255-i, 255);
+        delay(t_step);                  //255, 0, 255
+    }
+
+    for (int i=0; i<=255; i++){         //255, 0, 255
+        myArduLab.RGB(255, 0, 255-i);
+        delay(t_step);                  //255, 0, 0
     }
 }

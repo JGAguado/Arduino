@@ -1,6 +1,6 @@
 /******************************************************************************
 
-Taller_VI.cpp
+Taller_VI.ino
 Parktronic
 Created by J.G.Aguado
 June 19, 2018  
@@ -31,7 +31,7 @@ void loop(){
     distance = myBot.Get_Distance();
 
     Serial.print("Distance: ");
-    Serial.print(lum);
+    Serial.print(distance);
     Serial.println(" cm.");
     
     freq = map(distance, 0, 150, 5000, 300);
