@@ -51,7 +51,7 @@ int KineticMod::Read_pot(int pot){
             value = analogRead(A4);
             break;
     }
-    value = map(value, 0,1023,0,330);
+    value = map(value, 0,1023,0,360);
 
     return value;
 }
