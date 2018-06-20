@@ -49,10 +49,10 @@ class BotMod : public ArduLab{
         float Get_Pitch();
         float Get_Roll();
         float Get_Heading();
-        double Latitude(bool debug);
-        double Longitude(bool debug);
-        double Altitude(bool debug);
-        int N_sats(bool debug);
+        double Latitude(bool debug = false);
+        double Longitude(bool debug = false);
+        double Altitude(bool debug = false);
+        int N_sats(bool debug = false);
 
     private:
         Servo s_left;
