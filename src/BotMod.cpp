@@ -18,7 +18,11 @@ Distributed as-is; no warranty is given.
 #include <LSM303.h>
 
 #include "BotMod.h"
+#include <NMEAGPS.h>
+#include <GPSport.h>
 
+NMEAGPS  gps; 
+gps_fix  fix; 
 
 BotMod::BotMod()
 {  
@@ -230,4 +234,72 @@ float BotMod::Get_Heading(){
     }
 
     return heading;
+}
+
+double BotMod::Latitude(bool debug){
+    double lat;
+    while (gps.available( gpsPort )) {
+        fix = gps.read();
+        if (fix.valid.location) {
+            lat = fix.latitude();
+        }
+        else{
+            lat = 0.0;
+        }
+        if (debug){
+            Serial.println(lat);
+        }
+        return lat;
+    }
+}
+
+double BotMod::Longitude(bool debug){
+    double lon;
+    while (gps.available( gpsPort )) {
+        fix = gps.read();
+        if (fix.valid.location) {
+            lon = fix.longitude();
+        }
+        else{
+            lon = 0.0;
+        }
+        if (debug){
+            Serial.println(lon);
+        }
+        return lon;
+    }
+}
+
+double BotMod::Altitude(bool debug){
+    double alt;
+    while (gps.available( gpsPort )) {
+        fix = gps.read();
+        if (fix.valid.altitude) {
+            alt = fix.altitude();
+        }
+        else{
+            alt = 0.0;
+        }
+        if (debug){
+            Serial.println(alt);
+        }
+        return alt;
+    }
+}
+
+int BotMod::N_sats(bool debug){
+    int n_sats;
+    while (gps.available( gpsPort )) {
+        fix = gps.read();
+        if (fix.valid.satellites) {
+            n_sats = fix.satellites;
+        }
+        else{
+            n_sats = 0;
+        }
+        if (debug){
+            Serial.println(n_sats);
+        }
+        return n_sats;
+    }
 }

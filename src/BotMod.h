@@ -26,6 +26,9 @@ Distributed as-is; no warranty is given.
 #include <Wire.h>
 #include <LSM303.h>
 
+#include <NMEAGPS.h>
+#include <GPSport.h>
+
 #include "ArduLab.h"
 
 class BotMod : public ArduLab{
@@ -46,6 +49,10 @@ class BotMod : public ArduLab{
         float Get_Pitch();
         float Get_Roll();
         float Get_Heading();
+        double Latitude(bool debug = false);
+        double Longitude(bool debug = false);
+        double Altitude(bool debug = false);
+        int N_sats(bool debug = false);
 
     private:
         Servo s_left;
