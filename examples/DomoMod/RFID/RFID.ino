@@ -17,8 +17,8 @@ Distributed as-is; no warranty is given.
 DomoMod myHome;
 String id;
 void setup(){
-    myHome.DomoMod_init();
     Serial.begin(9600);
+    myHome.DomoMod_init(true);
     delay(1000);
 }
 
