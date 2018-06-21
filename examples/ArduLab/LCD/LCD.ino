@@ -17,12 +17,18 @@ Distributed as-is; no warranty is given.
 
 ArduLab myArduLab;
 int ii = 0;
+String jj;
 
 void setup(){
-
 }
 
 void loop(){
-    myArduLab.LCD_text("Hello World");
-    myArduLab.LCD_text
+    ii++;
+    if (ii>100){
+        ii=0;
+    }
+    jj = String(ii);
+    myArduLab.LCD_text("t0", "Hello World");
+    myArduLab.LCD_text("t1", jj);
+    // myArduLab.LCD_bar("j0", ii, 0);
 }
