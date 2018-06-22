@@ -122,7 +122,6 @@ void ArduLab::Stepper(int dir, int turns, int speed)
   float delayTime = (250/(speed/60.0));
   if (dir==0){
     for (int i=0; i<=turns; i++){
-      Serial.println(delayTime);
       digitalWrite(_motor_a_1, HIGH);
       digitalWrite(_motor_a_2, LOW);
       digitalWrite(_motor_b_1, LOW);
