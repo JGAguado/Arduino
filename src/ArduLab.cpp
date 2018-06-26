@@ -119,7 +119,7 @@ void ArduLab::Stepper(int dir, int turns, int speed)
     RPM at which the stepper rotates. By default values 60 (rpm)
  */
 {
-  int delayTime = ((speed/60)/4)*1000;
+  float delayTime = (250/(speed/60.0));
   if (dir==0){
     for (int i=0; i<=turns; i++){
       digitalWrite(_motor_a_1, HIGH);

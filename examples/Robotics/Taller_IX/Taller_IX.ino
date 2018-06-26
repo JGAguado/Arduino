@@ -31,9 +31,9 @@ void loop(){
     myBot.MotorA(0);    //STOP
 
     // Move stepper motor
-    myBot.Stepper(0, 5);    // Direction (1: CW, 2: CCW), Turns (by default 1), Speed (by default 60 rpm)
+    myBot.Stepper(0, 40, 480);    // Direction (1: CW, 2: CCW), Turns (by default 1), Speed (by default 60 rpm)
     delay(100);
-    myBot.Stepper(1, 5, 120);
+    myBot.Stepper(1, 20, 240);
     
     // Move servomotor
     for (int pos=0; pos<=180; pos++){
