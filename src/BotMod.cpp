@@ -28,6 +28,8 @@ BotMod::BotMod()
 {  
     pinMode(_led, OUTPUT);
     pinMode(_laser, OUTPUT);  
+    pinMode(_trig, OUTPUT);
+    pinMode(_echo, INPUT);
 }
 
 void BotMod::BotMod_init(){

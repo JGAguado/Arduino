@@ -131,8 +131,12 @@ int DomoMod::TVOC(bool debug){
     return TVOC;
 }
 
-int DomoMod::Presence(){ 
-    return analogRead(_presence);
+int DomoMod::Presence(bool debug){ 
+    int pir =  analogRead(_presence);
+    if (debug){
+        Serial.println(pir);
+    }
+    return pir;
 }
 String DomoMod::RFID(bool debug){ 
     String id = "";
