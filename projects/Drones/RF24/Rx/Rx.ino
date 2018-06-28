@@ -1,7 +1,7 @@
 /******************************************************************************
 
-Tx.ino
-2,4GHz RF Transmissor.
+Rx.ino
+2,4GHz RF Receptor.
 Created by J.G.Aguado
 June 19, 2018  
 https://github.com/SpaceDIY/ArduLab
