@@ -41,6 +41,11 @@ DomoMod::DomoMod()
 {  
     pinMode(_led, OUTPUT);
     pinMode(_power_moisture, OUTPUT);
+    
+    pinMode(_peltier_cold, OUTPUT);
+    pinMode(_peltier_hot, OUTPUT);
+    pinMode(_fan_ccw, OUTPUT);
+    pinMode(_fan_cw, OUTPUT);
 }
 
 void DomoMod::DomoMod_init(bool NFC){
@@ -160,6 +165,35 @@ void DomoMod::LED(int power){
     analogWrite(_led, power);
  }
 
+void DomoMod::Peltier(int state){
+    if (state==1){
+        digitalWrite(_peltier_cold, HIGH);
+        digitalWrite(_peltier_hot, LOW);
+    }
+    else if (state==2){
+        digitalWrite(_peltier_cold, LOW);
+        digitalWrite(_peltier_hot, HIGH);
+    }
+    else{
+        digitalWrite(_peltier_cold, LOW);
+        digitalWrite(_peltier_hot, LOW);
+    }
+}
+
+void DomoMod::Fan(int direction){
+    if (direction==1){
+        digitalWrite(_fan_ccw, HIGH);
+        digitalWrite(_fan_cw, LOW);
+    }
+    else if (direction==2){
+        digitalWrite(_fan_ccw, LOW);
+        digitalWrite(_fan_cw, HIGH);
+    }
+    else{
+        digitalWrite(_fan_ccw, LOW);
+        digitalWrite(_fan_cw, LOW);
+    }
+}
 int DomoMod::LDR(bool debug){
     int ldr = map(analogRead(_ldr), 0, 1023, 0, 100);
 
