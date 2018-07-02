@@ -48,9 +48,11 @@ void ArduLab::Beep()
   delay(250);  
 }
 
-void ArduLab::Play(int note, int duration)
+void ArduLab::Play(int note, int duration, int silence)
 {
   tone(_buzzer, note, duration);
+  delay(duration);
+  delay(silence);
 }
 
 void ArduLab::RGB(int r, int g, int b)

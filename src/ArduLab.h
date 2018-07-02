@@ -27,7 +27,7 @@ class ArduLab{
         ArduLab();
         void RGB(int r, int g, int b);
         void Beep();
-		void Play(int note, int duration);
+		void Play(int note, int duration, int silence=0);
         bool PushButton();
         float Battery();
         int Light();
