@@ -37,6 +37,7 @@ const int gH = 784;
 const int gSH = 830;
 const int aH = 880;
 
+int t_pause = 100;
 
 void setup(){
 
@@ -44,50 +45,91 @@ void setup(){
 
 void loop(){
     if (myArduLab.PushButton()){
-        myArduLab.Play(a, 500);
-        myArduLab.Play(a, 500);    
-        myArduLab.Play(a, 500);
-        myArduLab.Play(f, 350);
-        myArduLab.Play(cH, 150);  
-        myArduLab.Play(a, 500);
-        myArduLab.Play(f, 350);
-        myArduLab.Play(cH, 150);
-        myArduLab.Play(a, 650);
+        myArduLab.Play(a, 500, 100); 
+        myArduLab.Play(a, 500, 100);     
+        myArduLab.Play(a, 500, 100); 
+        myArduLab.Play(f, 350, 100); 
+        myArduLab.Play(cH, 150, 100);
         
-        delay(500);
+        myArduLab.Play(a, 500, 100);
+        myArduLab.Play(f, 350, 100);
+        myArduLab.Play(cH, 150, 100);
+        myArduLab.Play(a, 1000, 100);
+        //first bit
         
-        myArduLab.Play(eH, 500);
-        myArduLab.Play(eH, 500);
-        myArduLab.Play(eH, 500);  
-        myArduLab.Play(fH, 350);
-        myArduLab.Play(cH, 150);
-        myArduLab.Play(gS, 500);
-        myArduLab.Play(f, 350);
-        myArduLab.Play(cH, 150);
-        myArduLab.Play(a, 650);
+        myArduLab.Play(eH, 500, 100);
+        myArduLab.Play(eH, 500, 100);
+        myArduLab.Play(eH, 500, 100);    
+        myArduLab.Play(fH, 350, 100); 
+        myArduLab.Play(cH, 150, 100);
         
-        delay(500);
-
-        myArduLab.Play(aH, 500);
-        myArduLab.Play(a, 300);
-        myArduLab.Play(a, 150);
-        myArduLab.Play(aH, 500);
-        myArduLab.Play(gSH, 325);
-        myArduLab.Play(gH, 175);
-        myArduLab.Play(fSH, 125);
-        myArduLab.Play(fH, 125);    
-        myArduLab.Play(fSH, 250);
+        myArduLab.Play(gS, 500, 100);
+        myArduLab.Play(f, 350, 100);
+        myArduLab.Play(cH, 150, 100);
+        myArduLab.Play(a, 1000, 100);
+        //second bit...
         
-        delay(325);
+        myArduLab.Play(aH, 500, 100);
+        myArduLab.Play(a, 350, 100); 
+        myArduLab.Play(a, 150, 100);
+        myArduLab.Play(aH, 500, 100);
+        myArduLab.Play(gSH, 250, 100); 
+        myArduLab.Play(gH, 250, 100);
         
-        myArduLab.Play(aS, 250);
-        myArduLab.Play(dSH, 500);
-        myArduLab.Play(dH, 325);  
-        myArduLab.Play(cSH, 175);  
-        myArduLab.Play(cH, 125);  
-        myArduLab.Play(b, 125);  
-        myArduLab.Play(cH, 250);  
+        myArduLab.Play(fSH, 125, 100);
+        myArduLab.Play(fH, 125, 100);    
+        myArduLab.Play(fSH, 250, 100);
+        delay(250);
+        myArduLab.Play(aS, 250, 100);    
+        myArduLab.Play(dSH, 500, 100);  
+        myArduLab.Play(dH, 250, 100);  
+        myArduLab.Play(cSH, 250, 100);  
+        //start of the interesting bit
         
-        delay(350);
+        myArduLab.Play(cH, 125, 100);  
+        myArduLab.Play(b, 125, 100);  
+        myArduLab.Play(cH, 250, 100);      
+        delay(250);
+        myArduLab.Play(f, 125, 100);  
+        myArduLab.Play(gS, 500, 100);  
+        myArduLab.Play(f, 375, 100);  
+        myArduLab.Play(a, 125, 100); 
+        
+        myArduLab.Play(cH, 500, 100); 
+        myArduLab.Play(a, 375, 100);  
+        myArduLab.Play(cH, 125, 100); 
+        myArduLab.Play(eH, 1000, 100); 
+        //more interesting stuff (this doesn't quite get it right somehow)
+        
+        myArduLab.Play(aH, 500, 100);
+        myArduLab.Play(a, 350, 100); 
+        myArduLab.Play(a, 150, 100);
+        myArduLab.Play(aH, 500, 100);
+        myArduLab.Play(gSH, 250, 100); 
+        myArduLab.Play(gH, 250, 100);
+        
+        myArduLab.Play(fSH, 125, 100);
+        myArduLab.Play(fH, 125, 100);    
+        myArduLab.Play(fSH, 250, 100);
+        delay(250);
+        myArduLab.Play(aS, 250, 100);    
+        myArduLab.Play(dSH, 500, 100);  
+        myArduLab.Play(dH, 250, 100);  
+        myArduLab.Play(cSH, 250, 100);  
+        //repeat... repeat
+        
+        myArduLab.Play(cH, 125, 100);  
+        myArduLab.Play(b, 125, 100);  
+        myArduLab.Play(cH, 250, 100);      
+        delay(250);
+        myArduLab.Play(f, 250, 100);  
+        myArduLab.Play(gS, 500, 100);  
+        myArduLab.Play(f, 375, 100);  
+        myArduLab.Play(cH, 125, 100); 
+            
+        myArduLab.Play(a, 500, 100);            
+        myArduLab.Play(f, 375, 100);            
+        myArduLab.Play(c, 125, 100);            
+        myArduLab.Play(a, 1000, 100);
     }
 }
