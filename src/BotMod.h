@@ -6,6 +6,9 @@ Created by J.G.Aguado
 May 19, 2018  
 https://github.com/SpaceDIY/ArduLab
 
+This code includes part code of the Sparkfun Electronics library for controlling the VL53L1X written by Nathan Seidle
+(https://github.com/sparkfun/SparkFun_VL53L1X_Arduino_Library)
+
 This code is released under the [MIT License](http://opensource.org/licenses/MIT).
 Please review the LICENSE.md file included with this example. If you have any questions 
 or concerns with licensing, please contact jon-garcia@hotmail.com.
@@ -29,12 +32,17 @@ Distributed as-is; no warranty is given.
 #include <NMEAGPS.h>
 #include <GPSport.h>
 
+#include <Wire.h>
+#include "SparkFun_VL53L1X.h"
+
 #include "ArduLab.h"
 
 class BotMod : public ArduLab{
     public:
         BotMod();   
-        void BotMod_init();
+        void init_servos();
+        void init_IMU();
+        void init_distance();
         void Servo_Left(int pos);   
         void Servo_Right(int pos); 
         void Led(int power);
@@ -43,7 +51,7 @@ class BotMod : public ArduLab{
         int Right_LDR();
         int Left_IR();
         int Right_IR();
-        long Get_Distance();
+        int Get_Distance(bool debug = false);
         void Get_Acc(float *accel);
         void Get_Mag(float *mag);
         float Get_Pitch();
@@ -59,6 +67,7 @@ class BotMod : public ArduLab{
         Servo s_right;
 
         LSM303 IMU;
+        SFEVL53L1X distanceSensor;
 
         byte _s_left = 5;
         byte _s_right = 6;   
@@ -66,12 +75,10 @@ class BotMod : public ArduLab{
         byte _laser = 5; 	
         byte _led = 6;
 
-        byte _trig = 8;
-        byte _echo = 7;
-
         int _left_ldr = A2;
         int _right_ldr = A1;
         int _left_ir = A4;
         int _right_ir = A3;
+
 };
 #endif

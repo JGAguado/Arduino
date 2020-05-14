@@ -6,6 +6,10 @@ Created by J.G.Aguado
 May 19, 2018  
 https://github.com/SpaceDIY/ArduLab
 
+This code includes part code of the Sparkfun Electronics library for controlling the VL53L1X written by Nathan Seidle
+(https://github.com/sparkfun/SparkFun_VL53L1X_Arduino_Library)
+
+
 This code is released under the [MIT License](http://opensource.org/licenses/MIT).
 Please review the LICENSE.md file included with this example. If you have any questions 
 or concerns with licensing, please contact jon-garcia@hotmail.com.
@@ -21,23 +25,39 @@ Distributed as-is; no warranty is given.
 #include <NMEAGPS.h>
 #include <GPSport.h>
 
+#include <Wire.h>
+#include "SparkFun_VL53L1X.h"
+
+//Optional interrupt and shutdown pins.
+#define SHUTDOWN_PIN 2
+#define INTERRUPT_PIN 3
+
 NMEAGPS  gps; 
 gps_fix  fix; 
 
 BotMod::BotMod()
 {  
     pinMode(_led, OUTPUT);
-    pinMode(_laser, OUTPUT);  
-    pinMode(_trig, OUTPUT);
-    pinMode(_echo, INPUT);
+    pinMode(_laser, OUTPUT);
+
+    
 }
 
-void BotMod::BotMod_init(){
+void BotMod::init_servos(){
+    // Servos attach
     s_left.attach(_s_left);
-    s_right.attach(_s_right);
-    Wire.begin();
+    s_right.attach(_s_right);     
+}
+void BotMod::init_IMU(){
     IMU.init();
     IMU.enableDefault();
+}
+void BotMod::init_distance(){
+    Wire.begin();
+    if (distanceSensor.begin() == 0) //Begin returns 0 on a good init
+    {
+        Serial.println("Sensor online!");
+    }      
 }
 
 void BotMod::Servo_Left(int pos){
@@ -72,18 +92,17 @@ int BotMod::Right_IR(){
     return analogRead(_right_ir);
 }
 
-long BotMod::Get_Distance(){
-    long duration, distance;
-   
-    digitalWrite(_trig, LOW);  
-    delayMicroseconds(4);
-    digitalWrite(_trig, HIGH);  
-    delayMicroseconds(10);
-    digitalWrite(_trig, LOW);
+int BotMod::Get_Distance(bool debug){
+    distanceSensor.startRanging(); //Write configuration bytes to initiate measurement
+    
+    int distance = distanceSensor.getDistance(); //Get the result of the measurement from the sensor
+    distanceSensor.clearInterrupt();
+    distanceSensor.stopRanging();
 
-    duration = pulseIn(_echo, HIGH);  
+    if (debug){
+        Serial.print(distance);
+    }
 
-    distance = duration / 58.2;
     return distance;
 }
 
